@@ -51,6 +51,6 @@ func init() {
 	}
 	log.Info("Loading Configuration For :", "env", env)
 	if err := configor.Load(&Config, "config/config.json"); err != nil {
-		panic(err)
+		log.Error(err.Error())
 	}
 }
