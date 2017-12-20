@@ -90,3 +90,31 @@ func ipAddrFromRemoteAddr(s string) string {
 func FaviconHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "public/favicon.ico")
 }
+
+// GetUniqueArray :
+func GetUniqueArray(items []string) []string {
+	var unique []string
+	for _, v := range items {
+		skip := false
+		for _, u := range unique {
+			if v == u {
+				skip = true
+				break
+			}
+		}
+		if !skip {
+			unique = append(unique, v)
+		}
+	}
+	return unique
+}
+
+// RemoveStringArray :
+func RemoveStringArray(s []string, r string) []string {
+	for i, v := range s {
+		if v == r {
+			return append(s[:i], s[i+1:]...)
+		}
+	}
+	return s
+}
